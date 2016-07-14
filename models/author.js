@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var AuthorSchema = new Schema({
   name: String,
-  alive: String,
+  alive: Boolean,
   image: String
 });
 
