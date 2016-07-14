@@ -21,25 +21,25 @@ app.get('/', function (req, res) {
 });
 
 // get all books
-app.get('/api/books', function (req, res) {
+app.get('/api/books/authors', function (req, res) {
   // send all books as JSON response
-  db.Book.find()
+  db.Author.find()
     // populate fills in the author id with all the author data
     .populate('author')
-    .exec(function(err, books){
+    .exec(function(err, authors){
       if (err) { return console.log("index error: " + err); }
-      res.json(books);
+      res.json(authors);
     });
 });
 
-// get one book
-// app.get('/api/books/:id', function (req, res) {
-//   // find one book by its id
-//   db.Book.findById(req.params.id, function(err, book){
-//     if (err) { return console.log("show error: " + err); }
-//     res.json(book);
-//   });
-// });
+// get one author
+app.get('/api/books/authors/:id', function (req, res) {
+  // find one book by its id
+  db.Author.findById(req.params.id, function(err, authors){
+    if (err) { return console.log("show error: " + err); }
+    res.json(authors);
+  });
+});
 
 // create new book
 app.post('/api/books', function (req, res) {
@@ -63,7 +63,6 @@ db.Author.findOne({name: req.body.author}, function(err, author){
    });
  });
 });
-// delete book
 // app.delete('/api/books/:id', function (req, res) {
 //   // get book id from url params (`req.params`)
 //   console.log(req.params);
