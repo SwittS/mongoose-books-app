@@ -49,7 +49,7 @@ app.post('/api/books', function (req, res) {
     image: req.body.image,
     releaseDate: req.body.releaseDate,
   });
-});
+
 
 db.Author.findOne({name: req.body.author}, function(err, author){
    newBook.author = author;
@@ -62,7 +62,7 @@ db.Author.findOne({name: req.body.author}, function(err, author){
      res.json(book);
    });
  });
-
+});
 // delete book
 // app.delete('/api/books/:id', function (req, res) {
 //   // get book id from url params (`req.params`)
